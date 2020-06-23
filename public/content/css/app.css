@@ -50,6 +50,7 @@
   border-color: transparent;
 }
 
-.splitpane-root {
-  top: 0px;
+.root-pane {
+  top: 55px;
+  height: 91% !important;
 }
