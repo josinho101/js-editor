@@ -1,6 +1,6 @@
 import React from "react";
 import CodeView from "./codeview";
-import ConsoleView from "./consoleview";
+import ErrorView from "./errorconsoleview";
 import ResultView from "./resultview";
 import SplitPane from "react-split-pane";
 
@@ -21,7 +21,7 @@ const Editor: React.FunctionComponent = () => {
         maxSize={400}
       >
         <ResultView />
-        <ConsoleView />
+        <ErrorView />
       </SplitPane>
     </SplitPane>
   );
