@@ -75,6 +75,9 @@
 .view {
   width: 100%;
   height: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-family: monospace;
 }
 
 .view-wrapper {
@@ -84,11 +87,9 @@
 .result {
   background-color: white;
   color: black;
-  padding: 10px;
-  font-size: 14px;
-  font-family: monospace;
 }
 
 .console {
-  background-color: #5c6063;
+  background-color: #121315;
+  color: red;
 }

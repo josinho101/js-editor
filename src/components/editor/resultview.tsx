@@ -1,12 +1,16 @@
 import React from "react";
 import ViewHeader from "./viewheader";
 
-const ResultView: React.FunctionComponent = () => {
+interface Props {
+  result: string | undefined;
+}
+
+const ResultView: React.FunctionComponent<Props> = (props) => {
   return (
     <React.Fragment>
       <div className="view-wrapper">
         <ViewHeader title="Result" />
-        <div className="view result"></div>
+        <div className="view result">{props.result}</div>
       </div>
     </React.Fragment>
   );
