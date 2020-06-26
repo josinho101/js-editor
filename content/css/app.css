@@ -98,3 +98,24 @@
   background-color: #121315;
   color: red;
 }
+
+.codeview-controls {
+  background-color: #263238;
+  border: none;
+  outline: none;
+  height: 24px;
+  color: white;
+  border-right: 1px solid white;
+}
+
+.codeview-controls:last-child {
+  border: none;
+}
+
+.codeview-controls:focus {
+  outline: none;
+}
+
+.playbtn:hover {
+  fill: rgb(11, 221, 11);
+}
