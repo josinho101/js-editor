@@ -1,19 +1,28 @@
 import * as React from "react";
 
-class ConsoleExtension extends React.Component {
+interface Props {
+  addLogs: Function;
+}
+
+class ConsoleExtension extends React.Component<Props, any> {
   /**
    * constructor for console
    * @param props props
    * @param state state
    */
-  constructor(props: any, state: any) {
+  constructor(props: Props, state: any) {
     super(props, state);
+    let that = this;
 
     // override/tweek default console.log
-    let log = console.log;
     console.log = function (value: any) {
-      log(value);
-      return value;
+      let log = "";
+      if (typeof value === "object") {
+        log = JSON.stringify(value);
+      } else {
+        log = value;
+      }
+      that.props.addLogs(log);
     };
   }
 

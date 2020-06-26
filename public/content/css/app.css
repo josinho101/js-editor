@@ -74,7 +74,7 @@
 
 .view {
   width: 100%;
-  height: 100%;
+  height: 90%;
   padding: 10px;
   font-size: 14px;
   font-family: monospace;
@@ -87,6 +87,11 @@
 .result {
   background-color: white;
   color: black;
+  overflow: auto;
+}
+
+.result p {
+  margin: 0px;
 }
 
 .console {
