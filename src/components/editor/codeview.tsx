@@ -37,21 +37,38 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
       <button type="button" className="codeview-controls" title="Format code">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="24"
           viewBox="0 0 24 24"
-          width="15"
+          fill="white"
+          width="18px"
+          height="18px"
         >
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"
-            fill="white"
-          />
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M3 19h18v2H3zM3 7h12v2H3zm0-4h18v2H3zm0 12h12v2H3zm0-4h18v2H3z" />
         </svg>
         &nbsp;Fromat
       </button>
     );
 
-    return [playButton, formatButton];
+    let deleteButton = (
+      <button type="button" className="codeview-controls" title="Clear code">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M8 9h8v10H8z" opacity=".3" />
+          <path
+            d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"
+            fill="white"
+          />
+        </svg>
+        Clear
+      </button>
+    );
+
+    return [playButton, formatButton, deleteButton];
   };
 
   return (
