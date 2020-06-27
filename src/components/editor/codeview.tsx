@@ -8,7 +8,8 @@ require("codemirror/mode/javascript/javascript.js");
 
 interface Props {
   code?: string;
-  onCodeChange: (code?: string) => void;
+  cursor: any;
+  onCodeChange: (cursor: any, code?: string) => void;
   onFormatClick: (code?: string) => void;
   onExecuteClick: (code?: string) => void;
   onClearClick: () => void;
@@ -99,7 +100,9 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
 
   const onEditorChange = (editor: any, data: any, value: string) => {
     code = editor.getValue();
-    props.onCodeChange(code);
+    let cursor = editor.getCursor();
+    editor.setCursor(props.cursor.line, props.cursor.ch);
+    props.onCodeChange(cursor, code);
   };
 
   return (

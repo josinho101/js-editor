@@ -11,6 +11,7 @@ const Editor: React.FunctionComponent = () => {
   const [result, setResult] = useState<any[]>([]);
   const [error, setError] = useState(undefined);
   const [code, setCode] = useState("");
+  const [cursor, setCursor] = useState<any>({ line: 0, ch: 0 });
 
   // add log to state
   const addLogs = (log: any) => {
@@ -27,14 +28,16 @@ const Editor: React.FunctionComponent = () => {
     }
   };
 
-  const onCodeChange = (data?: string) => {
+  const onCodeChange = (cursor: any, data?: string) => {
     if (data) {
+      setCursor(cursor);
       setCode(data);
+      setResult([]);
       try {
-        // eval(data);
-        // setError(undefined);
+        eval(data);
+        setError(undefined);
       } catch (e) {
-        //setError(e.message);
+        setError(e.message);
       }
     }
   };
@@ -76,6 +79,7 @@ const Editor: React.FunctionComponent = () => {
       >
         <CodeView
           code={code}
+          cursor={cursor}
           onCodeChange={onCodeChange}
           onClearClick={onClearClick}
           onFormatClick={onFormatClick}
