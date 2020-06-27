@@ -7,10 +7,15 @@ require("codemirror/theme/material.css");
 require("codemirror/mode/javascript/javascript.js");
 
 interface Props {
-  onChange: (editor: any, data: any, value: string) => void;
+  code?: string;
+  onCodeChange: (code?: string) => void;
+  onFormatClick: (code?: string) => void;
+  onExecuteClick: (code?: string) => void;
+  onClearClick: () => void;
 }
 
 const CodeView: React.FunctionComponent<Props> = (props) => {
+  let code = props.code;
   let options = {
     mode: "javascript",
     theme: "material",
@@ -19,7 +24,14 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
 
   const getHeaderControls = () => {
     let playButton = (
-      <button type="button" className="codeview-controls" title="Execute">
+      <button
+        type="button"
+        className="codeview-controls"
+        title="Execute"
+        onClick={() => {
+          props.onExecuteClick(code);
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -34,7 +46,14 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
     );
 
     let formatButton = (
-      <button type="button" className="codeview-controls" title="Format code">
+      <button
+        type="button"
+        className="codeview-controls"
+        title="Format code"
+        onClick={() => {
+          props.onFormatClick(code);
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -50,7 +69,14 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
     );
 
     let deleteButton = (
-      <button type="button" className="codeview-controls" title="Clear code">
+      <button
+        type="button"
+        className="codeview-controls"
+        title="Clear code"
+        onClick={() => {
+          props.onClearClick();
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -68,16 +94,22 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
       </button>
     );
 
-    return [playButton, formatButton, deleteButton];
+    return [deleteButton, formatButton, playButton];
+  };
+
+  const onEditorChange = (editor: any, data: any, value: string) => {
+    code = editor.getValue();
+    props.onCodeChange(code);
   };
 
   return (
     <React.Fragment>
       <ViewHeader title="JavaScript" controls={getHeaderControls()} />
       <CodeMirror
+        value={code}
         className="codemirror-wrapper"
         options={options}
-        onChange={props.onChange}
+        onChange={onEditorChange}
       />
     </React.Fragment>
   );

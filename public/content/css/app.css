@@ -100,12 +100,13 @@
 }
 
 .codeview-controls {
-  background-color: #263238;
   border: none;
   outline: none;
   height: 24px;
   color: white;
-  border-right: 1px solid white;
+  float: right;
+  background-color: #263238;
+  border-left: 1px solid white;
 }
 
 .codeview-controls:last-child {
