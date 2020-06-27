@@ -8,6 +8,7 @@ import ConsoleExtension from "../common/consoleextension";
 var beautify = require("js-beautify").js;
 
 const Editor: React.FunctionComponent = () => {
+  let doExecuteCode = false;
   const [result, setResult] = useState<any[]>([]);
   const [error, setError] = useState(undefined);
   const [code, setCode] = useState("");
@@ -15,7 +16,9 @@ const Editor: React.FunctionComponent = () => {
 
   // add log to state
   const addLogs = (log: any) => {
-    setResult((state) => [...state, log]);
+    if (doExecuteCode) {
+      setResult((state) => [...state, log]);
+    }
   };
 
   const onFormatClick = (code?: string) => {
@@ -44,6 +47,7 @@ const Editor: React.FunctionComponent = () => {
 
   const onExecuteClick = (code?: string) => {
     if (code) {
+      doExecuteCode = true;
       try {
         setResult([]);
         setCode(code);
@@ -59,6 +63,7 @@ const Editor: React.FunctionComponent = () => {
       } catch (e) {
         setError(e.message);
       }
+      doExecuteCode = false;
     }
   };
 
