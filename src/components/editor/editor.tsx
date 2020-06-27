@@ -6,9 +6,9 @@ import SplitPane from "react-split-pane";
 import ConsoleExtension from "../common/consoleextension";
 
 var beautify = require("js-beautify").js;
+var esprima = require("esprima");
 
 const Editor: React.FunctionComponent = () => {
-  let doExecuteCode = false;
   const [result, setResult] = useState<any[]>([]);
   const [error, setError] = useState(undefined);
   const [code, setCode] = useState("");
@@ -16,9 +16,7 @@ const Editor: React.FunctionComponent = () => {
 
   // add log to state
   const addLogs = (log: any) => {
-    if (doExecuteCode) {
-      setResult((state) => [...state, log]);
-    }
+    setResult((state) => [...state, log]);
   };
 
   const onFormatClick = (code?: string) => {
@@ -37,17 +35,18 @@ const Editor: React.FunctionComponent = () => {
       setCode(data);
       setResult([]);
       try {
-        eval(data);
+        esprima.parseScript(data);
         setError(undefined);
       } catch (e) {
         setError(e.message);
       }
+    } else {
+      setError(undefined);
     }
   };
 
   const onExecuteClick = (code?: string) => {
     if (code) {
-      doExecuteCode = true;
       try {
         setResult([]);
         setCode(code);
@@ -63,7 +62,6 @@ const Editor: React.FunctionComponent = () => {
       } catch (e) {
         setError(e.message);
       }
-      doExecuteCode = false;
     }
   };
 
