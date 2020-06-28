@@ -8,8 +8,8 @@ interface Props {
 const ResultView: React.FunctionComponent<Props> = (props) => {
   const getLogElements = () => {
     if (props.result && props.result.length > 0) {
-      return props.result.map((item) => {
-        return <p>{item}</p>;
+      return props.result.map((item: any, index: number) => {
+        return <p key={`result-${index}`}>{item}</p>;
       });
     }
 

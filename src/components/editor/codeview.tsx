@@ -26,6 +26,7 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
   const getHeaderControls = () => {
     let playButton = (
       <button
+        key={"btn-execute"}
         type="button"
         className="codeview-controls"
         title="Execute"
@@ -48,6 +49,7 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
 
     let formatButton = (
       <button
+        key={"btn-format"}
         type="button"
         className="codeview-controls"
         title="Format code"
@@ -71,6 +73,7 @@ const CodeView: React.FunctionComponent<Props> = (props) => {
 
     let deleteButton = (
       <button
+        key={"btn-clear"}
         type="button"
         className="codeview-controls"
         title="Clear code"
